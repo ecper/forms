@@ -24,7 +24,7 @@
 
     <!-- <ion-button [disabled]="!forms.value.selectStrCode" (click)="encoding()">エンコードする</ion-button> -->
     <input id="fileInput" type="file" formControlName="file" accept=".txt">
-    <ion-button (click)="test()">エンコード</ion-button>
+    <ion-button (click)="encode()" [disabled]="!forms.value.file">エンコード</ion-button>
 
     <ion-item>
       <ion-textarea formControlName="encodedStr" [readonly]="false"></ion-textarea>
@@ -32,6 +32,7 @@
 
     <ion-item>
       <ion-label>文字コード: {{forms.value.detectedStrCode}},
+        改行コード : {{crOrLf(forms.value.encodedStr)}},
         文字種別:{{isNum(forms.value.encodedStr) + "/" + fillWidthOrHalf(forms.value.encodedStr)}}
       </ion-label>
     </ion-item>

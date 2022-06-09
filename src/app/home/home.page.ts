@@ -31,6 +31,17 @@ export class HomePage {
 		return text.match(/^[^\x01-\x7E\uFF61-\uFF9F]+$/) ? "全角" : "半角";
 	}
 
+	crOrLf(text: string) {
+		if (!text) return "--";
+		if (text.match(/\r\n/)) {
+			return "CRLF";
+		} else if (text.match(/\n/)) {
+			return "LF";
+		} else if (text.match(/\r/)) {
+			return "CR";
+		}
+	}
+
 	isNum(text: any) {
 		if (!text) return "--";
 		return isNaN(text) ? "文字" : "数字";
@@ -51,12 +62,12 @@ export class HomePage {
 	// 	this.forms.get("encodedStr").setValue(str);
 	// }
 
-	test() {
+	encode() {
 		const fileInput = document.getElementById("fileInput") as HTMLInputElement;
 		const fileReader = new FileReader();
 		fileReader.onload = (e) => {
 			const str = e.target.result;
-      console.log(str)
+			console.log(str);
 			const detectCode = encoding.detect(str);
 			this.forms.get("detectedStrCode").setValue(detectCode);
 			this.forms.get("encodedStr").setValue(iconv.decode(str, detectCode));
