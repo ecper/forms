@@ -1,20 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      フォーム判定
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form [formGroup]="forms">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+    <!-- <ion-item>
+      <ion-label position="floating">入力フォーム</ion-label>
+      <ion-input formControlName="input"></ion-input>
+    </ion-item> -->
+
+    <!-- <ion-item>
+      <ion-label position="floating">変換する文字コード</ion-label>
+      <ion-select formControlName="selectStrCode">
+        <ion-select-option *ngFor="let selectStrCode of selectStrCodes">{{selectStrCode}}</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+
+    <!-- <ion-button [disabled]="!forms.value.selectStrCode" (click)="encoding()">エンコードする</ion-button> -->
+    <input id="fileInput" type="file" formControlName="file" accept=".txt">
+    <ion-button (click)="test()">エンコード</ion-button>
+
+    <ion-item>
+      <ion-textarea formControlName="encodedStr" [readonly]="false"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>文字コード: {{forms.value.detectedStrCode}},
+        文字種別:{{isNum(forms.value.encodedStr) + "/" + fillWidthOrHalf(forms.value.encodedStr)}}
+      </ion-label>
+    </ion-item>
+
+  </form>
 </ion-content>
