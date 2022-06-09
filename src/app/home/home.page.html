@@ -24,6 +24,7 @@
 
     <!-- <ion-button [disabled]="!forms.value.selectStrCode" (click)="encoding()">エンコードする</ion-button> -->
     <input id="fileInput" type="file" formControlName="file" accept=".txt">
+
     <ion-button (click)="encode()" [disabled]="!forms.value.file">エンコード</ion-button>
 
     <ion-item>
